@@ -24,8 +24,8 @@ function App() {
 
   return (
     <div>
-      <span>find countries <Filter handleFilter={handleFilter}/><br></br></span>
-      <Countries countries={countries} filterSearch={filterSearch}/>
+      <span>find countries <Filter handleFilter={handleFilter} filterSearch={filterSearch}/><br /></span>
+      <Countries countries={countries} filterSearch={filterSearch} setFilter={setFilter}/>
     </div>
   )
 }

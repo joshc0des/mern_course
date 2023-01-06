@@ -1,3 +1,20 @@
+const Country = (props) => {
+  const { country, setFilter } = props
+
+  return (
+    <div>
+      <span>{country.name.common} 
+        <button 
+          value={country.name.common} 
+          onClick={(e)=>setFilter(e.target.value)}>
+            Show
+        </button>
+      </span>
+      <br />
+    </div>
+  )
+}
+
 const CountryInfo = (props) => {
   const { country } = props
   const keys = Object.keys(country.languages)
@@ -5,10 +22,10 @@ const CountryInfo = (props) => {
   return (
     <div>
       <h1>{country.name.common}</h1>
-      <span>capital {country.capital}</span><br></br>
-      <span>area {country.area}</span><br></br>
-      <br></br>
-      <span><b>languages:</b></span><br></br>
+      <span>capital {country.capital}</span><br/>
+      <span>area {country.area}</span><br/>
+      <br/>
+      <span><b>languages:</b></span><br/>
       <ul>
         {keys.map(key => <li key={key}>{`${country.languages[key]}`}</li>)}
       </ul>
@@ -18,7 +35,7 @@ const CountryInfo = (props) => {
 }
 
 const Countries = (props) => {
-  const { countries, filterSearch } = props
+  const { countries, filterSearch, setFilter } = props
 
   if (filterSearch.trim().length !== 0) {
     const search = countries.filter(country => country.name.common.toLowerCase().includes(filterSearch.toLowerCase()))
@@ -26,11 +43,10 @@ const Countries = (props) => {
     if (search.length >= 2 && search.length <= 10) {
       return (
         <div>
-          {search.map(country => <span key={country.name.common}>{`${country.name.common}`}<br></br></span>)}
+          {search.map(country => <Country key={country.name.common} country={country} setFilter={setFilter}/>)}
         </div>
       )
     } else if (search.length === 1) {
-      console.log(search[0])
       return (
         <CountryInfo country={search[0]}/>
       )

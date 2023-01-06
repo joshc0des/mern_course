@@ -1,9 +1,9 @@
 const Filter = (props) => {
-  const { handleFilter } = props
+  const { handleFilter, filterSearch } = props
 
   return (
     <span>
-      <input onChange={handleFilter}/>
+      <input value={filterSearch} onChange={handleFilter}/>
     </span>
   )
 }
