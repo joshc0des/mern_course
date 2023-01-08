@@ -20,7 +20,7 @@ function App() {
 
   const handleFilter = (event) => {
     setFilter(event.target.value)
-  } 
+  }
 
   return (
     <div>
