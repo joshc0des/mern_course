@@ -1,3 +1,5 @@
+import Weather from './Weather'
+
 const Country = (props) => {
   const { country, setFilter } = props
 
@@ -30,6 +32,7 @@ const CountryInfo = (props) => {
         {keys.map(key => <li key={key}>{`${country.languages[key]}`}</li>)}
       </ul>
       <img src={`${country.flags.png}`} alt={"flag"} width="250"></img>
+      <Weather country={country}/>
     </div>
   )
 }
