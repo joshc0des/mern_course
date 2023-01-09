@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
@@ -36,10 +36,14 @@ const App = () => {
       }})
     
     if (noDup === true) {
-      setPersons(persons.concat(personObject))
-      setNewName('')
-      setNewNumber('')
-    }
+      nameService
+        .create(personObject)
+        .then(returnedName => {
+          setPersons(persons.concat(returnedName))
+          setNewName('')
+          setNewNumber('')
+        })}
+    
     else {
       alert(`${newName} is already added to phonebook`)
     }
