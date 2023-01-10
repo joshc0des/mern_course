@@ -4,7 +4,6 @@ const baseUrl = 'http://localhost:3001/persons'
 
 const getAll = () => {
     const request = axios.get(baseUrl)
-
     return request.then(response => response.data)
 }
 
@@ -13,7 +12,12 @@ const create = newObject => {
     return request.then(response => response.data)
 }
 
+const remove = id => {
+    const request = axios.delete(`${baseUrl}/${id}`)
+    return request.then(response => response.data)
+}
 
-const exportedObject = { getAll, create }
+
+const exportedObject = { getAll, create, remove }
 
 export default exportedObject

@@ -58,7 +58,8 @@ const App = () => {
 
   const handleNameFilter = (event) => {
     setNameFilter(event.target.value)
-  } 
+  }
+
 
   return (
     <div>
@@ -73,7 +74,7 @@ const App = () => {
       handleNumberChange={handleNumberChange}/>
 
       <h2>Numbers</h2>
-        <Persons persons={persons} filterSearch={filterSearch}/>
+        <Persons persons={persons} filterSearch={filterSearch} setPersons={setPersons}/>
     </div>
   )
 }
