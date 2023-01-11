@@ -32,6 +32,19 @@ const App = () => {
     persons.forEach(person => {
       if (person.name === personObject.name) {
         noDup = false
+
+        if (window.confirm(`${person.name} is already added to phonebook, replace the old number with a new one?`)) {
+          const id = person.id
+          
+          nameService
+            .update(id, personObject.name, personObject.number)
+            .then((data) =>
+              setPersons(persons.map((person) => (data.id !== person.id ? person : data))
+            ))
+            setNewName('')
+            setNewNumber('')
+        }
+
       }})
     
     if (noDup === true) {
@@ -41,10 +54,7 @@ const App = () => {
           setPersons(persons.concat(returnedName))
           setNewName('')
           setNewNumber('')
-        })}
-    
-    else {
-      alert(`${newName} is already added to phonebook`)
+        })
     }
   }
 
