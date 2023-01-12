@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Notification from './components/Notification'
+import Error from './components/Error'
 import Filter from './components/Filter'
 import nameService from './services/names'
 
@@ -12,6 +13,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [notificationMessage, setMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
 
   useEffect(() => {
@@ -41,14 +43,22 @@ const App = () => {
           nameService
             .update(id, personObject.name, personObject.number)
             .then((data) =>
-              setPersons(persons.map((person) => (data.id !== person.id ? person : data))
-            ))
-            setMessage(
-              `Changed ${personObject.name}'s number`
-            )
-            setTimeout(() => {
-              setMessage(null)
-            }, 5000)
+              setPersons(persons.map((person) => (data.id !== person.id ? person : data)))
+              .setMessage(
+                `Changed ${personObject.name}'s number`)
+              .setTimeout(() => {
+                setMessage(null)
+              }, 5000)
+              )
+              .catch(error => {
+                setErrorMessage(
+                  `Information of ${personObject.name} has already been removed from server`
+                )
+                setPersons(persons.filter(p => p.id !== id))
+                setTimeout(() => {
+                  setErrorMessage(null)
+                }, 5000)
+              })
             setNewName('')
             setNewNumber('')
         }
@@ -89,6 +99,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <Notification message={notificationMessage}/>
+      <Error message={errorMessage}/>
       <Filter handleNameFilter={handleNameFilter}/>
 
       <h2>add a new</h2>
