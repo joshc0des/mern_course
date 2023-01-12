@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "8230482348",
+      "number": "040-123456",
       "id": 1
     },
     {
@@ -24,21 +24,6 @@
       "name": "Secret Santa",
       "number": "123456789",
       "id": 6
-    },
-    {
-      "name": "Jack Jones",
-      "number": "9283749237423984723",
-      "id": 7
-    },
-    {
-      "name": "Jack Jiimmy",
-      "number": "2398429834",
-      "id": 8
-    },
-    {
-      "name": "Jimmy Junior",
-      "number": "928345",
-      "id": 9
     }
   ]
 }
